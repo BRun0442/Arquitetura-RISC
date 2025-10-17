@@ -1,0 +1,26 @@
+module ACC (
+	input Load, Sh, Ad, Clk, rst,
+	input [8:0] Entradas,
+	output reg [8:0] Saidas
+);
+
+	//Aqui entra a implementação do ckt
+	always @ (posedge Clk, posedge rst) begin
+		if (rst) begin
+			Saidas   <= 9'd0;
+		end
+		else if (Load) begin
+			Saidas[3:0] <= Entradas[3:0];
+			Saidas[8:4] <= 5'd0;
+		end
+		else if(Ad) begin
+			Saidas[8:4] <= Entradas[8:4];
+			Saidas[3:0] <= Saidas[3:0];
+		end
+		else if (Sh) begin
+			Saidas <= Saidas >> 1;
+		end
+		
+	end
+
+endmodule

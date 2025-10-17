@@ -1,0 +1,34 @@
+module Counter (
+	input Load, Clk, rst,
+	output reg K
+);
+
+	reg [2:0]count;
+	reg aux_Load = 1'b0;
+	
+	always @ (posedge Clk, posedge rst) begin
+		
+		if(rst)
+		begin
+			count     <= 3'd0;
+			aux_Load  <= 1'b0;
+			K         <= 1'b0;
+		end 
+		else if (Load) begin
+			count     <= 3'd0;
+			aux_Load  <= 1'b1;
+			K         <= 1'b0;
+		end
+		else if({count == 3'd18} && aux_Load) begin
+			count     <= 3'd0;
+			aux_Load  <= 1'b0;
+			K         <= 1'b1;		
+		end 
+		else if (aux_Load) begin
+			count     <= count + 3'd1;
+			K         <= 1'b0;
+		end
+
+	end
+	
+endmodule
