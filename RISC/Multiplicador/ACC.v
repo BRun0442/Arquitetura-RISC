@@ -18,7 +18,7 @@ module ACC (
 			Saidas[15:0] <= Saidas[15:0];
 		end
 		else if (Sh) begin
-			Saidas <= Saidas >> 1;
+			Saidas <= {1'b0, Saidas[32:1]};
 		end
 		
 	end

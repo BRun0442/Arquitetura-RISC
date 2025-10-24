@@ -1,22 +1,22 @@
 module Multiplicador(
-    input  [15:0] Multiplicando,
-    input  [15:0] Multiplicador,
+    input  [3:0] Multiplicando,
+    input  [3:0] Multiplicador,
     input        St, Clk, rst,
-    output [15:0] Produto,
+    output [7:0] Produto,
     output       Idle, Done
 );
     // Controle
     wire Load, Sh, Ad, K, M;
 
     // Barramentos internos
-    wire [16:0] Soma;        // {cout,sum[3:0]} do Adder
-    wire [32:0] Resultado;   // {COUT, A[3:0], B[3:0]} do ACC
-	 wire [15:0] OperandoB;
+    wire [4:0] Soma;        // {cout,sum[3:0]} do Adder
+    wire [8:0] Resultado;   // {COUT, A[3:0], B[3:0]} do ACC
+	 wire [3:0] OperandoB;
 	 
 
     // Decodificações
     assign M        = Resultado[0];      // LSB de B
-    assign OperandoB  = Resultado[31:16];
+    assign OperandoB  = Resultado[7:4];
 	 
     // Soma: Multiplicando + A
     Adder adder (
@@ -55,6 +55,6 @@ module Multiplicador(
         .K(K)
     );
 	 
-	 assign Produto = Resultado[15:0];
+	 assign Produto = Resultado[7:0];
 	 
 endmodule
