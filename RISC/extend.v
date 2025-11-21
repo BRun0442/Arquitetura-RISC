@@ -1,14 +1,11 @@
-module extend(instInput, valueOutput, signalCtrl);
+module extend(instInput, valueOutput);
 	input	[31:0] instInput;
-	input signalCtrl;
 	output reg [31:0] valueOutput;
 	
 	always @ (*) begin
-		if(signalCtrl && instInput[15]) begin
+		if(instInput[15])
 			valueOutput <= {16'hFFFF, instInput[15:0]};
-		end
-		else begin
+		else 
 			valueOutput <= {16'h0000, instInput[15:0]};
-		end
 	end
 endmodule
