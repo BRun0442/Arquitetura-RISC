@@ -137,7 +137,7 @@ module control (
 				
 			default:
 				begin
-					logic_operation = in[15:0];
+					logic_operation = in[5:0];
 					rd = in[15:11];
 					
 					case(logic_operation)
@@ -220,3 +220,4 @@ module control (
 		endcase
 	end
 endmodule
+
