@@ -2,7 +2,6 @@ module control (
 	input [31:0] in,
 	output [24:0] out,
 	output [31:0] jmpAddress, //obs
-	output jmpFlag //obs
 );
 
 	//Grupo = 8 
@@ -31,7 +30,6 @@ module control (
 	};
 	
 	assign jmpAddress = jmpAddress_reg; //Obs
-	assign jmpFlag = jmpFlag_reg; //Obs
 	
 	always @(in)
 	begin
@@ -130,7 +128,9 @@ module control (
 					jmpFlag_reg = 1;
 					branchFlag = 0;
 					
-					jmpAddress_reg = {6'd0, in[25:0]}; // Verificar essa parte
+					///definição do endereço
+					jmpAddress_reg = {6'd0, in[25:0]}; 
+
 				end
 				
 				
@@ -220,4 +220,3 @@ module control (
 		endcase
 	end
 endmodule
-

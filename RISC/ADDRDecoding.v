@@ -27,4 +27,4 @@ module ADDRDecoding(WE, inputResult, iAddress, iWE, CS);
 			iAddress = 0;
 		end
 	end
-endmodule
+endmodule1
